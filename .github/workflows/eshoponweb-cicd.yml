@@ -5,12 +5,11 @@ on: [push, workflow_dispatch]
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
 env:
-RESOURCE-GROUP: rg-eshoponweb-KAVYA
-LOCATION: centralindia
-TEMPLATE-FILE: infra/webapp.bicep
-SUBSCRIPTION-ID: 4d36fb59-048b-4c4a-b832-784574cb1989
-WEBAPP-NAME: curioseshop8725
-
+ RESOURCE-GROUP: rg-eshoponweb-KAVYA
+ LOCATION: centralindia
+ TEMPLATE-FILE: infra/webapp.bicep
+ SUBSCRIPTION-ID: 4d36fb59-048b-4c4a-b832-784574cb1989
+ WEBAPP-NAME: curioseshop8725
 
 jobs:
   #Build, test and publish .net web project in repository
@@ -75,12 +74,8 @@ jobs:
     - name: Azure Login
       uses: azure/login@v2
       with:
-        creds: ${{secrets.NEWKEY}}
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        allow-no-subscriptions: true
-        enable-AzPSSession: true
-           
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+                   
     # Deploy Azure WebApp using Bicep file
     - name: deploy
       uses: azure/arm-deploy@v2
